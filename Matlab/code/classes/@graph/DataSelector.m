@@ -1,0 +1,203 @@
+%DATA_SELECTOR selects a user-defined subset of simulated data to be 
+% plotted on a new figure.
+%
+%
+% Syntax
+% ------
+% gr.DataSelector( sim, measure, n_request)
+%
+%
+% Details
+% -------
+% gr.DataSelector( sim, measure, n_request)
+%   Creates a figure allowing the user to select a subset of target data to
+%   plot. sim is a valid simulation object, measure is the target measure
+%   to be plotted, and n_request is a scalar value identifying the type of
+%   figure to be plotted.
+%
+% Examples
+% --------
+%  
+% See also: graph.plot, graph.plot_scatter, graph.plot_histogram, 
+% graph.plot_line, graph.plot_heat, graph.plot_surface
+
+%   Copyright 2013
+%   $Revision: 1.0 $  $Date: 2013/09/22 16:55:00 $  
+
+
+function DataSelector(gr, sim, measure, n_request)
+
+gr.Figure = figure;
+gr.Axes   = axes('Units','normalized','Position', [0.15,0.15,0.75,0.75] );
+
+% temporarily turn off interpolate so the user can see their actual points
+if gr.interpolate
+    gr.interpolate = false;
+    turnInterpOn = true;
+else
+    turnInterpOn = false;
+end
+
+varied = sim.get_varied();
+options = {'xlabel', {'String', varied{1,1}}};
+if size(varied,1)>1
+    ystr = varied{2,1};
+else
+    ystr = measure;
+end
+options = [options; {'ylabel', {'String', ystr}}];
+gr.plot(sim, measure, options);
+
+% and turn interp back on (while its still fresh in our minds)
+if turnInterpOn, gr.interpolate = true; end
+
+if ~isempty(gr.hLine)
+    xdata = get(gr.hLine, 'XData');
+    ydata = get(gr.hLine, 'YData');
+    hdl = gr.hLine;
+elseif ~isempty(gr.hImage)
+    xdata = get(gr.hImage, 'XData');
+    ydata = get(gr.hImage, 'YData');
+    [xdata,ydata] = meshgrid(xdata,ydata);
+    hdl = gr.hImage;
+else
+    error( 'IRM:CannotDownSampleData', 'Must select data from a line or 3-d plot.' );
+end
+
+hDatatip = CreateFigureDataTip(gr.Figure,hdl);
+
+set( hDatatip, 'ButtonDownFcn', {@setStartPoint, hDatatip}, 'Draggable', 'off', 'SelectionHighlight', 'off', 'UpdateFcn', {@UpdateDataTip, hDatatip} );
+set( gr.Figure, ...
+    'WindowButtonMotionFcn', {@MoveDataTip,hDatatip, gr.Axes, xdata, ydata}, ...
+    'WindowButtonDownFcn'  , {@setStartPoint, hDatatip}, ...
+    'WindowButtonUpFcn'    , {@setStopPoint , hDatatip});
+
+uicontrol('Parent', gr.Figure, 'Style','pushbutton','Units','normalized','Position',[0.8,0.02,0.12,0.05], 'String', 'Set', 'Callback', {@SetData, gr, sim, hDatatip, n_request}, 'FontSize', 14);
+uicontrol('Parent', gr.Figure, 'Style','pushbutton','Units','normalized','Position',[0.65,0.02,0.12,0.05],'String', 'Close', 'Callback', {@CloseLoadDataSelector,gr}, 'FontSize', 14);
+
+uiwait(gr.Figure);
+
+end %
+% ----------------------------------------------------
+function hDatatip = CreateFigureDataTip(fig, hLine)
+% This code is from:
+% http://undocumentedmatlab.com/blog/controlling-plot-data-tips/
+
+cursorMode = datacursormode(fig);
+
+% Note: the following code was adapted from %matlabroot%\toolbox\matlab\graphics\datacursormode.m
+% Create a new data tip
+hTarget = handle(hLine);
+hDatatip = cursorMode.createDatatip(hTarget);
+
+% Create a copy of the context menu for the datatip:
+set(hDatatip,'UIContextMenu',get(cursorMode,'UIContextMenu'));
+set(hDatatip,'HandleVisibility','off');
+set(hDatatip,'Host',hTarget);
+set(hDatatip,'ViewStyle','datatip');
+
+% Set the data-tip orientation to top-right rather than auto
+set(hDatatip,'OrientationMode','manual');
+set(hDatatip,'Orientation','top-right');
+
+% Update the datatip marker appearance
+set(hDatatip, 'MarkerSize',5, 'MarkerFaceColor','none', ...
+    'MarkerEdgeColor','k', 'Marker','o', 'HitTest','off');
+
+end % CreateFigureDataTip
+% ----------------------------------------------------
+function MoveDataTip(~,~,hDatatip, hAxes, x, y)
+
+% Grab the x & y axes coordinate where the mouse is
+mousePoint = get(hAxes, 'CurrentPoint');
+mouseX = mousePoint(1,1);
+mouseY = mousePoint(1,2);
+
+% Compare where data and current mouse point to find the data point
+% which is closest to the mouse point
+distancesToMouse = hypot(x - mouseX, y - mouseY);
+distancesToMouse = abs(distancesToMouse);
+[r,c] = find(distancesToMouse==min(distancesToMouse(:)),1);
+
+xrange = range(get(hAxes, 'Xlim'));
+yrange = range(get(hAxes, 'Ylim'));
+if abs(mouseX - x(r,c)) < 0.1*xrange && abs(mouseY - y(r,c)) < 0.1*yrange
+    position = [x(r,c),y(r,c),1; x(r,c),y(r,c),-1];
+    set( hDatatip, 'Visible', 'on' );
+    update(hDatatip, position);
+    set( hAxes, 'UserData', [x(r,c),y(r,c)] );
+else
+    set( hDatatip, 'Visible', 'off' );
+    set( hAxes, 'UserData', [] );
+end
+
+end % MoveDataTip
+% ----------------------------------------------------
+function setStartPoint(~,~,hDatatip)
+
+info = getCursorInfo(hDatatip);
+set(hDatatip, 'Userdata', info.Position);
+
+end % setStartPoint
+% ----------------------------------------------------
+function setStopPoint(~,~,hDatatip)
+
+info = getCursorInfo(hDatatip);
+userdata = get(hDatatip, 'Userdata');
+userdata = [userdata; info.Position];
+set(hDatatip, 'Userdata', userdata);
+
+end % setStopPoint
+% ----------------------------------------------------
+function txt = UpdateDataTip(~,~,hDatatip)
+pos = get(hDatatip,'Position');
+txt = ...
+    {
+    ['X: ' num2str(pos(1),'%1.2f')], ...
+    ['Y: ' num2str(pos(2),'%1.2f')], ...
+    };
+end % UpdateDataTip
+% ----------------------------------------------------
+function SetData(~,~,gr, sim, hDatatip, n_request)
+
+pos  = get(hDatatip, 'UserData');
+xpos = sort(pos(:,1)) + [-eps; eps]; % add eps to avoid point errors below.
+ypos = sort(pos(:,2)) + [-eps; eps];
+
+% pull out actually varied input.
+varied = sim.get_varied();
+n = size(varied,1);
+if n<2, varied(end+1,:) = {[],[]}; end
+xvar = varied{1,2};
+yvar = varied{2,2}; % can be []
+
+cols = find((xpos(1)<=xvar) & (xvar<=xpos(2)));
+rows = find((ypos(1)<=yvar) & (yvar<=ypos(2))); % is [] when yvar = []
+
+% special cases
+if n<2 % going from line to histogram
+    rows = 1;
+elseif n_request==0 % going from heat to hist
+    cols = cols(1);
+    rows = rows(1);
+else % going from heat to line
+    if all(diff(pos)==0) % first check to see if they created a line.
+        title(gr.Axes,'\fontsize{18} \color{black}You must choose a{\fontsize{22}\color{red}LINE} to plot');        return;
+    end
+    if length(cols) > length(rows) % pick across cols
+        rows = rows(1); % closest to starting point
+    else
+        cols = cols(1);
+    end
+end
+
+gr.sample = {rows,cols};
+CloseLoadDataSelector([],[],gr);
+end %
+% ----------------------------------------------------
+function CloseLoadDataSelector(~,~,gr)
+hFig = gr.Figure;
+gr.Figure = [];
+gr.Axes = [];
+close(hFig);
+end %

@@ -1,0 +1,19 @@
+@21-Oct-2013 19:05:43	IRM:PlotAdded: Plot added.
+@21-Oct-2013 19:05:44	IRM:PlotCreated: Differential Accuracy (Heatmap) created
+@21-Oct-2013 19:05:53	IRM:PlotAdded: Plot added.
+@21-Oct-2013 19:05:55	IRM:RemovePlot: Plot removed.
+@21-Oct-2013 19:05:55	IRM:RemovePlot: Plot removed.
+@21-Oct-2013 19:05:56	IRM:RemovePlot: Plot removed.
+@21-Oct-2013 19:06:00	IRM:PlotAdded: Plot added.
+@21-Oct-2013 19:06:27	IRM:PlotCreated: Ingroup Favoritism (Line) created
+@21-Oct-2013 19:06:50	IRM:PlotCreated: Ingroup Favoritism (Line) created
+@21-Oct-2013 19:06:56	IRM:PlotAdded: Plot added.
+@21-Oct-2013 19:07:00	IRM:PlotCreated: Ingroup Favoritism (Histogram) created
+@21-Oct-2013 19:07:20	IRM:PlotCreated: Ingroup Favoritism (Histogram) created
+@21-Oct-2013 19:11:25	IRM:RemovePlot: Plot removed.
+@21-Oct-2013 19:15:23	IRM:RemovePlot: Plot removed.
+@21-Oct-2013 19:15:24	IRM:PlotAdded: Plot added.
+@21-Oct-2013 19:20:43	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@21-Oct-2013 19:29:40	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@21-Oct-2013 20:44:12	IRM:PlotAdded: Plot added.
+@21-Oct-2013 20:45:52	IRM:PlotCreated: Self-Enhancement (Line) created

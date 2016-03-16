@@ -1,0 +1,66 @@
+To install the GUI on a Mac machine, a few simple setup steps are required AFTER installing the Matlab Compiler Runtime (MCR).
+
+These involve setting up the environment variables for your machine and then launching the GUI through the terminal.
+
+To launch the GUI on your Mac, follow these instructions:
+
+
+--------------------------Setting environment variables
+
+1.) After installing the MCR, open the Terminal. You can do this in your applications folder, or by clicking on the magnifying glass (spotlight) in the top right corner, typing the word Terminal, and clicking on what appears.
+
+2.) Enter the following line of code into the terminal as a single line and press enter. <MCR_ROOT> is the directory where the MCR is installed. An example follows for a Mac machine with the MCR installed according to default settings.
+
+export DYLD_LIBRARY_PATH= <mcr_root>/v80/runtime/maci64:
+                	  <mcr_root>/v80/sys/os/maci64:
+                	  <mcr_root>/v80/bin/maci64:
+			  /System/Library/Frameworks/JavaVM.framework/JavaVM:
+			  /System/Library/Frameworks/JavaVM.framework/Libraries
+
+
+%EXAMPLE
+
+export DYLD_LIBRARY_PATH=/Applications/MATLAB_R2012b.app/toolbox/compiler/mcr/v80/v80/runtime/maci64:/Applications/MATLAB_R2012b.app/toolbox/compiler/mcr/v80/sys/os/maci64:/Applications/MATLAB_R2012b.app/toolbox/compiler/mcr/v80/bin/maci64:/System/Library/Frameworks/JavaVM.framework/JavaVM:/System/Library/Frameworks/JavaVM.framework/Libraries
+
+3.) Enter the following line of code into the terminal and press enter. An example follows for a Mac machine with the MCR installed according to default settings.
+
+export 
+XAPPLRESDIR=<mcr_root>/v80/X11/app-defaults
+
+
+
+%EXAMPLE
+
+XAPPLRESDIR=/Applications/MATLAB_R2012b.app/toolbox/compiler/mcr/v80/X11/app-defaults
+
+
+----------------------------Launching the GUI
+
+Now that your environment variables have been set, you can launch the GUI from the terminal.
+
+1.) Open the Terminal. You can do this in your applications folder, or by clicking on the magnifying glass in the top right corner, typing the word Terminal, and clicking on what appears.
+
+2.) Paste the following line into the terminal and press Enter. <IRM_Simulator> is the directory where the IRM_Simulator application (file 'run_IRM_Simulator.sh') is stored. An example follows.
+
+cd <IRM_Simulator> 
+
+
+%EXAMPLE
+
+cd /Users/Pheck/Desktop/IRM_Simulator
+
+3.) Now you are ready to launch the GUI. Paste the following line into the terminal and press enter. Within 15 seconds, a new GUI window should load. <MCR_ROOT> is where MATLAB or the MCR is installed. An example follows.
+
+./run_IRM_Simulator.sh <MCR_ROOT>
+
+
+%EXAMPLE
+
+./run_IRM_Simulator.sh /Applications/MATLAB/MATLAB_Compiler_Runtime/v80/
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+%HELP_MENU calls the functions linked to specific help menu options.
+%
+% Syntax
+% ------
+%  ui.help_menu( type );
+%
+% Details
+% -------
+% 'type' is defined by what the user clicked. In the help menu, this can
+% either be 'about' or 'manual'.
+% 
+% Examples
+% --------
+%  
+% See also: interface.options_menu, interface.file_menu
+
+%   Copyright 2013
+%   $Revision: 1.0 $  $Date: 2013/09/22 19:48:00 $ 
+
+function help_menu(varargin)
+
+menuItem = varargin{4};
+switch lower(menuItem)
+    case 'about'
+        open( 'about_interface.fig' );
+        imshow('Image.png');
+        
+    case 'manual'
+        open( 'Manual.pdf' );
+        
+    case 'createfigures';
+        h = open( 'create_MS_figures.fig' );
+        
+        children = get(h, 'Children');
+        ind = [7 9 6 5];
+        children = children(ind);
+        
+        whichFigure = {'Figure1.PNG'; 'Figure2.PNG'; 'Figure3.PNG'; 'Figure4.PNG'};
+        
+        for i = length(children)
+            
+            
+        end %i
+
+        [figure1,map]=imread('Figure1.PNG');
+        figure1 = imresize(figure1, [170 170]);
+        set(figureButton1, 'CData', figure1);
+        
+        
+        
+        
+%         figureButton1 = children(7);
+%         figureButton2 = children(9);
+%         figureButton3 = children(6);
+%         figureButton4 = children(5);
+        
+    otherwise
+        ui.error( 'IRM:NotAMenuOption', 'Must select ''about'' or ''manual''' )
+end % switch
+
+end     % help_menu

@@ -1,0 +1,53 @@
+@01-Oct-2013 22:05:13	IRM:PlotAdded: Plot added.
+@01-Oct-2013 22:05:14	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@01-Oct-2013 22:07:25	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@03-Oct-2013 16:21:36	IRM:RemoveMeasure: Measure removed.
+@03-Oct-2013 17:08:09	IRM:MeasureAddEdit: Measure updated
+@28-Oct-2013 17:46:09	IRM:MeasureAddEdit: Measure updated
+@28-Oct-2013 17:46:13	IRM:RemovePlot: Plot removed.
+@28-Oct-2013 17:46:14	IRM:RemovePlot: Plot removed.
+@28-Oct-2013 17:46:33	IRM:PlotToolsNoUserPlots: You have not created any plots yet. Click Plot Selected.
+@28-Oct-2013 17:46:35	IRM:PlotAdded: Plot added.
+@28-Oct-2013 17:46:36	IRM:PlotToolsNoUserPlots: You have not created any plots yet. Click Plot Selected.
+@28-Oct-2013 17:46:54	IRM:PlotAdded: Plot added.
+@28-Oct-2013 17:46:55	IRM:PlotCreated: Differential Accuracy (Histogram) created
+@05-Nov-2013 12:35:09	IRM:New: New simulation created.
+@05-Nov-2013 12:47:59	IRM:New: New simulation created.
+@08-Dec-2013 21:36:31	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@08-Dec-2013 21:36:43	IRM:PlotAdded: Plot added.
+@08-Dec-2013 21:36:44	IRM:PlotCreated: Differential Accuracy (Histogram) created
+@08-Dec-2013 21:36:56	IRM:PlotAdded: Plot added.
+@08-Dec-2013 21:36:58	IRM:PlotCreated: Ingroup Favoritism (Histogram) created
+@08-Dec-2013 21:37:02	IRM:PlotAdded: Plot added.
+@08-Dec-2013 21:37:03	IRM:PlotCreated: Intergroup Accentuation (Histogram) created
+@08-Dec-2013 21:38:15	IRM:PlotCreated: Intergroup Accentuation (Histogram) created
+@08-Dec-2013 22:35:14	IRM:PlotAdded: Plot added.
+@08-Dec-2013 22:38:45	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@08-Dec-2013 22:39:12	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@08-Dec-2013 22:53:56	IRM:New: New simulation created.
+@08-Dec-2013 23:15:35	IRM:PlotAdded: Plot added.
+@08-Dec-2013 23:15:36	IRM:PlotCreated: Ingroup Favoritism (Histogram) created
+@09-Dec-2013 18:25:57	IRM:RemovePlot: Plot removed.
+@09-Dec-2013 21:03:09	IRM:SetNPoints: Number of points set to 20000
+@09-Dec-2013 21:04:04	IRM:SetNPoints: Number of points set to 30000
+@09-Dec-2013 21:04:15	IRM:SetNPoints: Number of points set to 15
+@09-Dec-2013 21:04:26	IRM:SetNPoints: Number of points set to 25000
+@09-Dec-2013 21:07:06	IRM:TooManySteps: The interface restricts you to 21 steps (-1:.1:1)
+@09-Dec-2013 22:32:16	IRM:RemoveMeasure: Measure removed.
+@09-Dec-2013 22:34:41	IRM:New: New simulation created.
+@09-Dec-2013 22:35:51	IRM:SetNPoints: Number of points set to 30000
+@09-Dec-2013 22:37:44	IRM:New: New simulation created.
+@09-Dec-2013 22:40:20	IRM:SetNPoints: Number of points set to 50000
+@09-Dec-2013 22:40:30	IRM:New: New simulation created.
+@09-Dec-2013 22:40:36	IRM:PlotAdded: Plot added.
+@09-Dec-2013 22:40:37	IRM:PlotCreated: Differential Accuracy (Histogram) created
+@09-Dec-2013 22:40:39	IRM:PlotAdded: Plot added.
+@09-Dec-2013 22:40:40	IRM:PlotCreated: Intergroup Accentuation (Histogram) created
+@09-Dec-2013 22:40:44	IRM:RemovePlot: Plot removed.
+@09-Dec-2013 22:40:59	IRM:PlotAdded: Plot added.
+@09-Dec-2013 22:41:00	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@09-Dec-2013 22:41:24	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@09-Dec-2013 22:41:28	IRM:PlotCreated: Self-Enhancement (Histogram) created
+@09-Dec-2013 22:42:01	IRM:TooManySteps: The interface restricts you to 21 steps (-1:.1:1)
+@09-Dec-2013 22:43:38	IRM:TooManySteps: The interface restricts you to 21 steps (-1:.1:1)
+@09-Dec-2013 22:45:06	IRM:RemovePlot: Plot removed.
